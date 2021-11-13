@@ -4,9 +4,13 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
+from win32com.client import Dispatch
+
+def speak(text):
+	speak=Dispatch(("SAPI.SpVoice"))
+	speak.Speak(text)
 
 ps = PorterStemmer()
-
 
 def transform_text(text):
     text = text.lower()
@@ -50,5 +54,7 @@ if st.button('Predict'):
     # 4. Display
     if result == 1:
         st.header("Spam")
+        speak("This is A Spam Email")
     else:
         st.header("Not Spam")
+        speak("This is Not A Spam Email")
