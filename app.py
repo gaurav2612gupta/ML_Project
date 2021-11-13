@@ -4,13 +4,17 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
+import win32com
 from win32com.client import Dispatch
 
+
 def speak(text):
-	speak=Dispatch(("SAPI.SpVoice"))
-	speak.Speak(text)
+    speak = Dispatch(("SAPI.SpVoice"))
+    speak.Speak(text)
+
 
 ps = PorterStemmer()
+
 
 def transform_text(text):
     text = text.lower()
@@ -36,8 +40,9 @@ def transform_text(text):
 
     return " ".join(y)
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+
+tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
 st.title("Email/SMS Spam Classifier")
 
